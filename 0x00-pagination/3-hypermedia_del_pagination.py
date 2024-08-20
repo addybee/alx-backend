@@ -42,6 +42,8 @@ class Server:
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
         """Retrieve hypermedia data for a specific page with pagination."""
         indexed_data = self.indexed_data()
+        if index is None:
+            index = 0
         assert (isinstance(index, int) and
                 isinstance(page_size, int) and
                 index >= 0 and
