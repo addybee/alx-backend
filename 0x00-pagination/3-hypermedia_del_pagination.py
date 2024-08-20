@@ -41,18 +41,19 @@ class Server:
 
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
         """Retrieve hypermedia data for a specific page with pagination."""
-        indexed_data = self.indexed_data()
+        indexed_data = self.indexed_dataset()
         if index is None:
             index = 0
         assert (isinstance(index, int) and
                 isinstance(page_size, int) and
                 index >= 0 and
                 index < len(indexed_data) and
-                page_size > 0
-                        
+                page_size > 0)
+
         return {
-            "index": index,
-            "next_index": index + page_size,
-            "page_size": page_size,
-            "data": [indexed_data.get(str(idx)) for idx in range(index, index + page_size)]
-        }
+                "index": index,
+                "next_index": index + page_size,
+                "page_size": page_size,
+                "data": [indexed_data.get(str(idx))
+                         for idx in range(index, index + page_size)]
+                }
