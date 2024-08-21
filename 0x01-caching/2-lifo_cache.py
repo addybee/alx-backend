@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-""" FIFO caching """
+""" LIFO caching """
 
 
 BaseCaching = __import__('base_caching').BaseCaching
 
 
-class FIFOCache(BaseCaching):
-    """FIFO caching implementation using a queue to manage items in the cache.
+class LIFOCache(BaseCaching):
+    """LIFO caching implementation using a queue to manage items in the cache.
     """
     def __init__(self):
         """Initialize"""
@@ -19,10 +19,12 @@ class FIFOCache(BaseCaching):
         """
         if len(self.__queue) >= self.MAX_ITEMS:
             if key not in self.__queue:
-                dkey = self.__queue.pop(0)
+                dkey = self.__queue.pop()
                 print("DISCARD: {}".format(dkey))
                 del self.cache_data[dkey]
-                self.__queue.append(key)
+            else:
+                self.__queue.remove(key)
+            self.__queue.append(key)
         else:
             self.__queue.append(key)
         self.cache_data.update({key: item})
