@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-""" LRU caching """
+""" LFU caching """
 
 
 BaseCaching = __import__('base_caching').BaseCaching
 
 
-class LRUCache(BaseCaching):
-    """ LRU cache implementation using a queue to manage items based on
-        the Least Recently Used policy.
+class LFUCache(BaseCaching):
+    """ LFU cache implementation using a queue to manage items based on
+        the Least frequently Used policy.
 
         Methods:
         - put(key, item): Add an item to the cache.
@@ -19,7 +19,7 @@ class LRUCache(BaseCaching):
         self.__queue = []
 
     def en_and_de_queue(self, key, item):
-        """Add or update an item in the cache using LRU policy."""
+        """Add or update an item in the cache using LFU policy."""
         if len(self.__queue) >= self.MAX_ITEMS:
             if key not in self.__queue:
                 dkey = self.__queue.pop(0)

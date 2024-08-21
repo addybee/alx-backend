@@ -1,17 +1,13 @@
 #!/usr/bin/env python3
-""" LRU caching """
+""" MRU caching """
 
 
 BaseCaching = __import__('base_caching').BaseCaching
 
 
-class LRUCache(BaseCaching):
-    """ LRU cache implementation using a queue to manage items based on
-        the Least Recently Used policy.
-
-        Methods:
-        - put(key, item): Add an item to the cache.
-        - get(key): Retrieve an item from the cache by key.
+class MRUCache(BaseCaching):
+    """ MRU cache implementation using a custom caching strategy based on
+        the Most Recently Used policy.
     """
     def __init__(self):
         """Initialize"""
@@ -19,10 +15,12 @@ class LRUCache(BaseCaching):
         self.__queue = []
 
     def en_and_de_queue(self, key, item):
-        """Add or update an item in the cache using LRU policy."""
+        """
+            Add or update an item in the cache using MRU policy.
+        """
         if len(self.__queue) >= self.MAX_ITEMS:
             if key not in self.__queue:
-                dkey = self.__queue.pop(0)
+                dkey = self.__queue.pop()
                 print("DISCARD: {}".format(dkey))
                 del self.cache_data[dkey]
             else:
