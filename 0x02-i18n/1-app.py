@@ -4,12 +4,14 @@ This is a basic Flask application.
 """
 
 from flask import Flask, render_template
-from flask_babel import Babel  # type: ignore
+from flask_babel import Babel
 app = Flask(__name__)
 
 
 class Config:
-    """configuration class for flask app"""
+    """
+    configuration class for flask app
+    """
     LANGUAGES = ['en', 'fr']
     # Set Babel's default locale
     BABEL_DEFAULT_LOCALE = 'en'
@@ -23,7 +25,7 @@ babel = Babel(app, default_locale=Config.BABEL_DEFAULT_LOCALE,
 
 
 @app.route('/')
-def hello():
+def hello() -> str:
     """
     This function is a route handler for the root URL of the application.
     It renders an HTML template named '0-index.html'.

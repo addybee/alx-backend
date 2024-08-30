@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def hello():
+def hello() -> str:
     """
     This function is a route handler for the root URL of the application.
     It renders an HTML template named '0-index.html'.
