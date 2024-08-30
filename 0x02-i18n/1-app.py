@@ -6,6 +6,7 @@ This is a basic Flask application.
 from flask import Flask, render_template
 from flask_babel import Babel
 app = Flask(__name__)
+babel = Babel(app)
 
 
 class Config:
@@ -20,10 +21,6 @@ class Config:
     BABEL_DEFAULT_TIMEZONE = 'UTC'
 
 
-babel = Babel(app, default_locale=Config.BABEL_DEFAULT_LOCALE,
-              default_timezone=Config.BABEL_DEFAULT_TIMEZONE)
-
-
 @app.route('/')
 def hello() -> str:
     """
@@ -31,6 +28,9 @@ def hello() -> str:
     It renders an HTML template named '0-index.html'.
     """
     return render_template('1-index.html')
+
+
+app.config.from_object(Config)
 
 
 if __name__ == '__main__':
