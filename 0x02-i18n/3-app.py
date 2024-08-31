@@ -4,7 +4,7 @@ This is a basic Flask application.
 """
 
 from flask import Flask, render_template, request
-from flask_babel import Babel, _  # type: ignore
+from flask_babel import Babel, _
 from typing import Optional
 app = Flask(__name__)
 babel = Babel(app)
