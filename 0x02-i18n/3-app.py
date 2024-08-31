@@ -41,10 +41,11 @@ def get_locale() -> Optional[str]:
 @app.route('/')
 def hello() -> str:
     """
-    This function is a route handler for the root URL of the application.
-    It renders an HTML template named '0-index.html'.
+    Route handler for the root URL of the application.
+    Renders the '3-index.html' HTML template.
+    Returns the rendered template.
     """
-    return render_template('2-index.html')
+    return render_template('3-index.html')
 
 
 if __name__ == '__main__':
